@@ -1,16 +1,16 @@
-package pl.sda.springmvc.dto;
+package pl.sda.springmvc.entities;
 
 import lombok.*;
 
 import java.math.BigDecimal;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
-@ToString
-@AllArgsConstructor
-@NoArgsConstructor
+@EqualsAndHashCode
 @Builder
-public class ProductDTO {
+public class ProductEntity {
 
     private Long id;
     private String name;
