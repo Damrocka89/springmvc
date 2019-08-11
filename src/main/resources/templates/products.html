@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<head>
+    <meta charset="UTF-8">
+    <title>Products</title>
+</head>
+<body>
+<h5>Hello Products view</h5>
+
+<!--/*@thymesVar id="userName" type="pl.sda.springmvc"*/-->
+<td th:text="${userName}">Text ...</td>
+
+<table>
+    <tbody th:each="product : ${products}" th:remove="tag">
+    <tr>
+        <td th:text="${product.getId()}">...</td>
+        <td th:text="${product.getName()}">...</td>
+        <td th:text="${product.getPrice()}">...</td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>

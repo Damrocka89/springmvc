@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Products</title>
+</head>
+<body>
+<h5>Hello Products view</h5>
+
+<!--/*@thymesVar id="userName" type="pl.sda.springmvc"*/-->
+
+<form th:action="@{/admin/products}" method="post" th:object="${newProduct}">
+    Product name:<br>
+    <input th:text th:field="*{name}"><br>
+    Product price:<br>
+    <input th:type="number" th:field="*{price}"><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+
+</body>
+</html>
