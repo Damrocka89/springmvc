@@ -27,10 +27,7 @@ public class InMemoryProductRepositoryImpl implements ProductRepository {
 
     @Override
     public Optional<ProductEntity> getProductById(Long idProducts) {
-        if (repo.containsKey(idProducts)){
-            return Optional.of(repo.get(idProducts));
-        }
-        return Optional.empty();
+        return Optional.ofNullable(repo.get(idProducts));
     }
 
     @Override

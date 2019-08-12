@@ -1,6 +1,8 @@
 package pl.sda.springmvc.services.impl;
 
 import org.springframework.stereotype.Service;
+import pl.sda.exceptions.NotFoundProductException;
+import pl.sda.exceptions.WebApplicationException;
 import pl.sda.springmvc.dto.NewProductDTO;
 import pl.sda.springmvc.dto.ProductDTO;
 import pl.sda.springmvc.entities.ProductEntity;
@@ -9,6 +11,7 @@ import pl.sda.springmvc.repositories.ProductRepository;
 import pl.sda.springmvc.services.ProductService;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,13 +34,21 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductDTO> getAllProducts() {
-       return productRepository.findAllProducts().stream()
+        return productRepository.findAllProducts().stream()
                 .map(ModelMapper::mapToProductDTO)
-               .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
 
     @Override
     public void remove(Long idProduct) {
 
+    }
+
+    @Override
+    public ProductDTO getProductById(Long idProduct) throws NotFoundProductException {
+        Optional<ProductEntity> productByIdOptional = productRepository.getProductById(idProduct);
+        return productByIdOptional
+                .map(ModelMapper::mapToProductDTO)
+                .orElseThrow(() -> new NotFoundProductException("Not found product with id = " + idProduct));
     }
 }
