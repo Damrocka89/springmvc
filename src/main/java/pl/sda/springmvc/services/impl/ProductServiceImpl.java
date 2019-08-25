@@ -1,13 +1,13 @@
 package pl.sda.springmvc.services.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.sda.exceptions.NotFoundProductException;
-import pl.sda.exceptions.WebApplicationException;
+import pl.sda.springmvc.exceptions.NotFoundProductException;
 import pl.sda.springmvc.dto.NewProductDTO;
 import pl.sda.springmvc.dto.ProductDTO;
 import pl.sda.springmvc.entities.ProductEntity;
 import pl.sda.springmvc.mapper.ModelMapper;
-import pl.sda.springmvc.repositories.ProductRepository;
+import pl.sda.springmvc.repositories.ProductCrudRepository;
 import pl.sda.springmvc.services.ProductService;
 
 import java.util.List;
@@ -17,11 +17,10 @@ import java.util.stream.Collectors;
 @Service
 public class ProductServiceImpl implements ProductService {
 
-    private final ProductRepository productRepository;
 
-    public ProductServiceImpl(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
+    @Autowired
+    private ProductCrudRepository productCrudRepository;
+
 
     @Override
     public void addProduct(NewProductDTO newProduct) {
@@ -29,24 +28,24 @@ public class ProductServiceImpl implements ProductService {
                 .name(newProduct.getName())
                 .price(newProduct.getPrice())
                 .build();
-        productRepository.addProduct(productEntity);
+        productCrudRepository.save(productEntity);
     }
 
     @Override
     public List<ProductDTO> getAllProducts() {
-        return productRepository.findAllProducts().stream()
+        return productCrudRepository.findAll().stream()
                 .map(ModelMapper::mapToProductDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
     public void remove(Long idProduct) {
-
+        productCrudRepository.removeProductEntityById(idProduct);
     }
 
     @Override
     public ProductDTO getProductById(Long idProduct) throws NotFoundProductException {
-        Optional<ProductEntity> productByIdOptional = productRepository.getProductById(idProduct);
+        Optional<ProductEntity> productByIdOptional = productCrudRepository.findProductEntityById(idProduct);
         return productByIdOptional
                 .map(ModelMapper::mapToProductDTO)
                 .orElseThrow(() -> new NotFoundProductException("Not found product with id = " + idProduct));

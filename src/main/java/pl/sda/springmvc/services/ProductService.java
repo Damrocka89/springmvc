@@ -1,6 +1,6 @@
 package pl.sda.springmvc.services;
 
-import pl.sda.exceptions.WebApplicationException;
+import pl.sda.springmvc.exceptions.WebApplicationException;
 import pl.sda.springmvc.dto.NewProductDTO;
 import pl.sda.springmvc.dto.ProductDTO;
 

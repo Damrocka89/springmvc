@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Please Register</title>
+</head>
+<body>
+<div class="container" layout:fragment="content">
+    <div class="row">
+        <form th:action="@{/sign-in}" method="post" th:object="${userForm}">
+            <div class="form-group">
+                <label for="login">Login</label>
+                <input type="text" th:field="*{login}" class="form-control" id="login" placeholder="Login">
+                <div th:if="${#fields.hasErrors('login')}" th:errors="*{login}">Login Error</div>
+            </div>
+            <div class="form-group">
+                <label for="password">Hasło</label>
+                <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Hasło">
+                <div th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</div>
+            </div>
+            <div class="form-group">
+                <label for="repeatedPassword">Powtórz hasło</label>
+                <input type="password" th:field="*{repeatedPassword}" class="form-control" id="repeatedPassword" placeholder="Powtórz hasło">
+                <div th:if="${#fields.hasErrors('repeatedPassword')}" th:errors="*{repeatedPassword}">Repeating Password Error</div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

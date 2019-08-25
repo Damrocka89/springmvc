@@ -5,11 +5,11 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 <head>
     <meta charset="UTF-8">
-    <title>Products</title>
+    <title>Shop Cart</title>
 </head>
 <body>
-<h5>Hello Products view</h5>
 
+<h5>Shop Cart</h5>
 <div layout:fragment="content">
 <table>
     <tbody th:each="product : ${products}" th:remove="tag">
@@ -17,11 +17,14 @@
         <td th:text="${product.getId()}">...</td>
         <td th:text="${product.getName()}">...</td>
         <td th:text="${product.getPrice()}">...</td>
-        <td><button><a th:href="@{'/shopcart/addproduct/' + ${product.id}}">ADD</a></button></td>
     </tr>
     </tbody>
 </table>
+
+<td><button><a th:href="@{'/shopcart/placeorder/'}">Buy</a></button></td>
 </div>
+
+
 
 </body>
 </html>

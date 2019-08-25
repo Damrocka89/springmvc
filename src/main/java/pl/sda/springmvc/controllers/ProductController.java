@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.exceptions.WebApplicationException;
+import pl.sda.springmvc.exceptions.WebApplicationException;
 import pl.sda.springmvc.dto.ProductDTO;
 import pl.sda.springmvc.services.ProductService;
 

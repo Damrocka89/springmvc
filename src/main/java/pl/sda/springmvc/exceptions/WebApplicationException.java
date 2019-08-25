@@ -1,4 +1,4 @@
-package pl.sda.exceptions;
+package pl.sda.springmvc.exceptions;
 
 public class WebApplicationException extends Exception {
 

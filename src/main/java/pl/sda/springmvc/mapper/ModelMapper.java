@@ -1,7 +1,11 @@
 package pl.sda.springmvc.mapper;
 
+import pl.sda.springmvc.dto.OrderDTO;
 import pl.sda.springmvc.dto.ProductDTO;
+import pl.sda.springmvc.entities.OrderEntity;
 import pl.sda.springmvc.entities.ProductEntity;
+
+import java.util.stream.Collectors;
 
 public class ModelMapper {
 
@@ -19,4 +23,18 @@ public class ModelMapper {
                 .price(productEntity.getPrice())
                 .build();
     }
+
+    public static OrderDTO mapToOrderDto(OrderEntity orderEntity) {
+        return OrderDTO.builder()
+                .id(orderEntity.getId())
+                .creationTime(orderEntity.getCreationTime())
+                .products(orderEntity.getProducts()
+                        .stream()
+                        .map(ModelMapper::mapToProductDTO)
+                        .collect(Collectors.toList()))
+                .user(orderEntity.getUser())
+                .build();
+    }
+
+
 }

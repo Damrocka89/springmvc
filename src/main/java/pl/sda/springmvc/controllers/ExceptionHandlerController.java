@@ -3,7 +3,7 @@ package pl.sda.springmvc.controllers;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.exceptions.NotFoundProductException;
+import pl.sda.springmvc.exceptions.NotFoundProductException;
 
 @ControllerAdvice
 public class ExceptionHandlerController {
