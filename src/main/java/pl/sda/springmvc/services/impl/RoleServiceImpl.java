@@ -5,6 +5,8 @@ import pl.sda.springmvc.entities.RoleEntity;
 import pl.sda.springmvc.repositories.RoleCrudRepository;
 import pl.sda.springmvc.services.RoleService;
 
+import java.util.Optional;
+
 @Service
 public class RoleServiceImpl implements RoleService {
 
@@ -15,7 +17,11 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public void addRole(RoleEntity roleEntity) {
-        roleCrudRepository.save(roleEntity);
+    public void addRole(String name) {
+        Optional<RoleEntity> optionalRoleEntity = roleCrudRepository.findByName(name);
+        if (optionalRoleEntity.isPresent()) {
+            return;
+        }
+        roleCrudRepository.save(RoleEntity.builder().name(name).build());
     }
 }

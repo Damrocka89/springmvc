@@ -31,7 +31,7 @@ public class SpringmvcApplication implements CommandLineRunner {
 		productService.addProduct(new NewProductDTO().builder().name("two").price(BigDecimal.valueOf(100)).build());
 		productService.addProduct(new NewProductDTO().builder().name("three").price(BigDecimal.valueOf(100)).build());
 
-		roleService.addRole(RoleEntity.builder().name("ADMIN").build());
-		roleService.addRole(RoleEntity.builder().name("USER").build());
+		roleService.addRole("ADMIN");
+		roleService.addRole("USER");
 	}
 }

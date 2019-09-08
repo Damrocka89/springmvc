@@ -5,5 +5,5 @@ import pl.sda.springmvc.exceptions.AlreadyExistingUserException;
 
 public interface UserService {
 
-    void addUser(RegistrationFormDTO registrationFormDTO) throws AlreadyExistingUserException;
+    void addUser(RegistrationFormDTO registrationFormDTO) throws Exception;
 }

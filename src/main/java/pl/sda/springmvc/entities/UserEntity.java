@@ -32,7 +32,7 @@ public class UserEntity {
     private String password;
 
     @ManyToMany
-    private Set<RoleEntity> roles=new HashSet<>();
+    private Set<RoleEntity> roles = new HashSet<>();
 
     @OneToMany(mappedBy = "user")
     private List<OrderEntity> orders = new ArrayList<>();

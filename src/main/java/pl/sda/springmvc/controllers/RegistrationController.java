@@ -27,7 +27,7 @@ public class RegistrationController {
     }
 
     @PostMapping("/sign-in")
-    public ModelAndView registerUser(@ModelAttribute("userForm") RegistrationFormDTO registrationFormDTO, ModelAndView modelAndView) throws AlreadyExistingUserException {
+    public ModelAndView registerUser(@ModelAttribute("userForm") RegistrationFormDTO registrationFormDTO, ModelAndView modelAndView) throws Exception {
         userService.addUser(registrationFormDTO);
         modelAndView.setViewName("redirect:/login");
         return modelAndView;
